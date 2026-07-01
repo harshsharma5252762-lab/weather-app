@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather — Skyline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="sky"></canvas>
+
+<div class="app">
+
+  <header class="topbar">
+    <form id="searchForm" class="search" autocomplete="off">
+      <input id="cityInput" type="text" placeholder="Search a city…" aria-label="City search">
+      <button type="submit" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </form>
+    <button id="geoBtn" class="iconbtn" aria-label="Use my location" title="Use my location">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+    </button>
+    <button id="unitToggle" class="unitbtn" aria-label="Toggle units">°F</button>
+  </header>
+
+  <main id="content" class="content">
+
+    <section id="loadingState" class="state-panel">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Reading the sky…</p>
+    </section>
+
+    <section id="errorState" class="state-panel hidden">
+      <p class="error-title">Couldn't find that place</p>
+      <p class="error-body" id="errorDetail">Check the spelling, or try a nearby city.</p>
+    </section>
+
+    <section id="weatherState" class="weather hidden">
+
+      <div class="now">
+        <div class="now-loc">
+          <h1 id="cityName">—</h1>
+          <p id="dateLine">—</p>
+        </div>
+
+        <div class="now-main">
+          <div class="now-temp">
+            <span id="tempValue">0</span><span class="deg">°</span>
+          </div>
+          <div class="now-meta">
+            <p id="conditionText" class="condition">—</p>
+            <p id="feelsLike" class="feels">Feels like —</p>
+            <p id="hiLow" class="hilo">H: — &nbsp;L: —</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" id="statsRow">
+        <div class="stat">
+          <span class="stat-label">Wind</span>
+          <span class="stat-value" id="statWind">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Humidity</span>
+          <span class="stat-value" id="statHumidity">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Pressure</span>
+          <span class="stat-value" id="statPressure">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Visibility</span>
+          <span class="stat-value" id="statVisibility">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Sunrise</span>
+          <span class="stat-value" id="statSunrise">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Sunset</span>
+          <span class="stat-value" id="statSunset">—</span>
+        </div>
+      </div>
+
+      <div class="forecast-section">
+        <p class="section-label">5-day outlook</p>
+        <div class="forecast-strip" id="forecastStrip"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Data from OpenWeatherMap · <span id="updatedAt"></span></p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
